@@ -1,10 +1,18 @@
 <div>
   <h2>{{title}}</h2>
   <div>
-    <p>Github Repo: <a href="https://github.com/ashwin-sureshkumar/angular-infinite-scroller" target="_blank">Angular Infinite Scroller</a></p>
-    <p>Blog Post: <a href="https://medium.com/@Sureshkumar_Ash/angular-2-simple-infinite-scroller-directive-with-rxjs-observables-a989b12d4fb1"> Angular —Simple Infinite scroller directive with RxJS Observables</a></p>
+    <p>Github Repo: <a href="https://github.com/ashwin-sureshkumar/angular-infinite-scroller" target="_blank">Angular Cache Service with RxJS</a></p>
+    <p>Blog Post: <a href="https://medium.com/@Sureshkumar_Ash/angular-2-simple-infinite-scroller-directive-with-rxjs-observables-a989b12d4fb1">Angular  —  Simple In Memory Cache Service on the UI with RxJS</a></p>
   </div>
   <ul id="infinite-scroller" appInfiniteScroller scrollPerecnt="70" [immediateCallback]="true" [scrollCallback]="scrollCallback">
-    <li *ngFor="let item of news">{{item.title}}</li>
+    <li *ngFor="let item of news">
+      <div>{{item.title}}</div>
+      <app-news-author [id]="item.user"></app-news-author>
+    </li>
   </ul>
+  <div>
+      <h3>Related Blogs</h3>
+      <p>Github Repo: <a href="https://github.com/ashwin-sureshkumar/angular-infinite-scroller" target="_blank">Angular Infinite Scroller</a></p>
+      <p>Blog Post: <a href="https://medium.com/@Sureshkumar_Ash/angular-2-simple-infinite-scroller-directive-with-rxjs-observables-a989b12d4fb1"> Angular —Simple Infinite scroller directive with RxJS Observables</a></p>
+    </div>
 </div>
