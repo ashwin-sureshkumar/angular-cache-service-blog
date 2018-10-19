@@ -39,7 +39,14 @@ export class CacheService {
     } else if (fallback && fallback instanceof Observable) {
       this.inFlightObservables.set(key, new Subject());
       console.log(`%c Calling api for ${key}`, 'color: purple');
-      return fallback.do((value) => { this.set(key, value, maxAge); });
+      return fallback.do((value) => { this.set(key, value, maxAge); })
+        .catch((e: any) => { // `fallback` are crashed
+          // crashed flight is terrible😰, it's better to clean it up...
+          this.inFlightObservables.delete(key);
+          // and when we have done our job, it's good idea to let the others know this event.
+          // maybe they have their stuffs need to be done too.
+          return Observable.throw(e);
+      });
     } else {
       return Observable.throw('Requested key is not available in Cache');
     }
